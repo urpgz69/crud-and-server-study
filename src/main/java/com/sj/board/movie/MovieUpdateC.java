@@ -16,7 +16,7 @@ public class MovieUpdateC extends HttpServlet {
 
 
         request.setAttribute("content","/jsp/movie/movie.jsp");
-        request.setAttribute("movies", MovieDAO.MOVIE_DAO.getAllMovies(request));
+        request.setAttribute("movies", MovieDAO.MOVIE_DAO.getAllMovies());
         request.getRequestDispatcher("index.jsp").forward(request,response);
 
 
@@ -53,4 +53,5 @@ public class MovieUpdateC extends HttpServlet {
 
     public void destroy() {
     }
+
 }

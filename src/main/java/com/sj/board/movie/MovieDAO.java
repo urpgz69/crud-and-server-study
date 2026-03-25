@@ -1,16 +1,10 @@
 package com.sj.board.movie;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.sj.board.main.DBManager;
-
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +16,7 @@ public class MovieDAO {
     }
 
 
-    public  List<MovieDTO> getAllMovies(HttpServletRequest request) {
+    public  List<MovieDTO> getAllMovies() {
         String sql = "select * from movie_test";
         List<MovieDTO> movies = new ArrayList<>();
 
@@ -49,7 +43,7 @@ public class MovieDAO {
         String sql = "delete from movie_test where m_number = ?";
        try(
         Connection con = DBManager.getConnection();
-        PreparedStatement pstmt = con.prepareStatement(sql);)
+        PreparedStatement pstmt = con.prepareStatement(sql))
        {
            pstmt.setString(1, request.getParameter("num"));
             if (pstmt.executeUpdate()==1){
@@ -125,7 +119,7 @@ public class MovieDAO {
 
 
     public void paging(int pageNum, HttpServletRequest request) {
-        List<MovieDTO> movies = getAllMovies(request);
+        List<MovieDTO> movies = getAllMovies();
         int total = movies.size();
         int pagePerImg = 3 ;
         int totalPage = (int) (Math.ceil((double) total / pagePerImg));
