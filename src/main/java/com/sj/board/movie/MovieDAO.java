@@ -23,7 +23,7 @@ public class MovieDAO {
         try (
                 Connection con = DBManager.getConnection();
                 PreparedStatement pstmt = con.prepareStatement(sql);
-                ResultSet rs = pstmt.executeQuery();
+                ResultSet rs = pstmt.executeQuery()
         ) {
             while (rs.next()) {
                 MovieDTO movie = new MovieDTO(rs.getInt("m_number"), rs.getString("m_title"), rs.getString("m_actor"), rs.getString("m_img"), rs.getString("m_story"));
@@ -60,7 +60,7 @@ public class MovieDAO {
 
         try(
                 Connection con = DBManager.getConnection();
-                PreparedStatement pstmt = con.prepareStatement(sql);
+                PreparedStatement pstmt = con.prepareStatement(sql)
 
                 ){
             String img = dto.getImg();
@@ -98,7 +98,7 @@ public class MovieDAO {
         sql.append("WHERE m_number = ?");
         try(
               Connection con = DBManager.getConnection();
-              PreparedStatement pstmt = con.prepareStatement(sql.toString());
+              PreparedStatement pstmt = con.prepareStatement(sql.toString())
               )
         {
             if (title != null){ pstmt.setString(idx++, title);}

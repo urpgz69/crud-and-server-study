@@ -28,7 +28,7 @@ return false;
        String sql = "select * from account_test where a_id = ?";
         try(
                 Connection con = DBManager.getConnection();
-                PreparedStatement pstmt = con.prepareStatement(sql);
+                PreparedStatement pstmt = con.prepareStatement(sql)
 
         ){
             pstmt.setString(1, id);
@@ -83,7 +83,7 @@ return false;
 
         try (
                 Connection con = DBManager.getConnection();
-                PreparedStatement selectPstmt = con.prepareStatement(selectSql);
+                PreparedStatement selectPstmt = con.prepareStatement(selectSql)
         ) {
             selectPstmt.setString(1, id);
             try (ResultSet rs = selectPstmt.executeQuery()) {
