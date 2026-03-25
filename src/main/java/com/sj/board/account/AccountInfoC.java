@@ -29,10 +29,10 @@ public class AccountInfoC extends HttpServlet {
     if(AccountDAO.ACCOUNT_DAO.deleteUser(request) ){
         request.setAttribute("content","jsp/account/deleteSuccess.jsp");
         request.setAttribute("loginPage", "jsp/account/login.jsp");
-        request.setAttribute("msg2","delete success");}
+        request.getSession().setAttribute("msg2","delete success");}
     else {
         request.setAttribute("content","jsp/account/my-page.jsp");
-        request.setAttribute("msg2","delete failed");
+        request.getSession().setAttribute("msg2","delete failed");
     }
     request.getRequestDispatcher("index.jsp").forward(request,response);
     }

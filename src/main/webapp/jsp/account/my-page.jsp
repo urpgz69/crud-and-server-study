@@ -28,7 +28,7 @@
   </div>
   <div>
 
-    <button class="info-btn">edit</button>
+    <button class="info-btn" onclick="location.href='user-edit'">edit</button>
     <button class="info-btn" onclick="AccountDelModal()">Account delete</button>
   </div>
 </div>
@@ -50,9 +50,9 @@
 
   </div>
 </div>
-<c:if test="${not empty msg2}" >
+<c:if test="${not empty sessionScope.msg2}" >
   <div class="modal">
-<div class="warning-msg2">${msg2}</div>
+<div class="warning-msg2">${sessionScope.msg2}</div>
   <button class="info-btn" onclick="this.closest('.modal').style.display='none'">닫기</button>
   </div>
 </c:if>

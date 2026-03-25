@@ -11,9 +11,7 @@
 
 <div class="login-area">
     <div class="login-box">
-
 <jsp:include page="${loginPage}"></jsp:include><br>
-        <div class="warning-msg" style='color: red'> ${msg}</div><br>
 </div>
 </div>
 
@@ -32,5 +30,15 @@
         <jsp:include page="${content}" />
     </div>
 </div>
+
+<c:if test="${not empty msg}" >
+    <div class="i-modal">
+        <div class="warning-msg">${msg}</div>
+        <button class="index-btn" onclick="this.closest('.i-modal').style.display='none'">닫기</button>
+    </div>
+</c:if>
+
+
+
 </body>
 </html>

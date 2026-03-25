@@ -103,4 +103,44 @@ return false;
         }
         return false;
     }
+
+    public void editUser(HttpServletRequest request) {
+            StringBuilder sql = new StringBuilder("update account_test set ");
+            AccountVO user = (AccountVO) request.getSession().getAttribute("user");
+            String id = user.getId();
+            String pw = request.getParameter("pw");
+            String name = request.getParameter("name");
+            if (pw == null && name == null){ return;}
+            int idx = 1;
+            if (pw != null) sql.append("a_pw = ?, ");
+            if (name != null) sql.append("a_name = ?, ");
+            sql.deleteCharAt(sql.lastIndexOf(","));
+            sql.append("where a_id = ?");
+
+
+            try(
+                    Connection con = DBManager.getConnection();
+                    PreparedStatement pstmt = con.prepareStatement(sql.toString())
+                    ){
+                    if (pw != null){ pstmt.setString(idx++, pw);}
+                    if (name != null) {pstmt.setString(idx++, name);}
+                    pstmt.setString(idx,id);
+                   if (pstmt.executeUpdate() == 1) {
+                       System.out.println("update success");
+                       user.setPw(pw !=null ? pw : user.getPw()
+                       );
+                       user.setName(name != null ? name : user.getName());
+                       request.getSession().setAttribute("user",user);
+                       request.getSession().setAttribute("msg2","update success");
+                   }
+            }catch (Exception e ){
+                e.printStackTrace();
+            }
+
+
+
+
+
+
+    }
 }
