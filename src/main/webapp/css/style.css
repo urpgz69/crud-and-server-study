@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    min-height: 100vh;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+div.title {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+div.title a {
+    color: white;
+    text-decoration: none;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    background-color: #444;
+    padding: 10px 0;
+}
+
+.menu div {
+    margin: 0 15px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+/* Specific labels for the empty links in index.jsp */
+.menu div:nth-child(1) a::after { content: "Menu 1"; }
+.menu div:nth-child(2) a::after { content: "Movie"; }
+.menu div:nth-child(3) a::after { content: "Review"; }
+
+.content {
+    padding: 20px;
+}
+
+header h1 {
+    text-align: center;
+    margin-top: 50px;
+    color: #333;
+}
+

@@ -1,0 +1,238 @@
+#movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.movie-card {
+    width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background-color: white;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.m-img img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.m-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+}
+
+.m-actor {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.m-story {
+    padding: 0 10px;
+    font-size: 0.85em;
+    color: #777;
+    height: 60px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+button {
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+}
+
+button:hover {
+    background-color: #e8e8e8;
+}
+
+.movie-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.movie-reg {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.movie-reg > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.movie-reg input, .movie-reg textarea {
+    width: 250px;
+    padding: 5px;
+}
+
+button[onclick="addModal()"] {
+    display: block;
+    margin: 20px auto;
+    padding: 15px 40px;
+    font-size: 1.5em;
+    font-weight: bold;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+button[onclick="addModal()"]:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.movie-card button {
+    margin: 5px;
+    transition: background-color 0.2s;
+}
+
+button[onclick^="updateModal"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+button[onclick^="updateModal"]:hover {
+    background-color: #0056b3;
+}
+
+button[onclick^="deleteAl"] {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+
+button[onclick^="deleteAl"]:hover {
+    background-color: #c82333;
+}
+
+button[name$="-modal-btn"], 
+#detailModal button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    margin-top: 10px;
+}
+
+button[name$="-modal-btn"]:hover,
+#detailModal button:hover {
+    background-color: #5a6268;
+}
+
+.movie-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+}
+
+.detailImg {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+#detailImg {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.movie-detail > div {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.col-1 {
+    width: 80px;
+    font-weight: bold;
+    color: #555;
+}
+
+.col-2 {
+    flex: 1;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* Modal Overlay Styles */
+#addModal, #updateModal, #detailModal {
+    z-index: 1000;
+}
+
+#addModal > div, #updateModal > div, #detailModal > div {
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    min-width: 400px;
+}
+
+/* Pagination Styles */
+.page-btn {
+    text-decoration: none;
+    color: #007bff;
+    padding: 5px 10px;
+    font-weight: bold;
+}
+
+.page-btn:hover {
+    text-decoration: underline;
+}
+
+.movie-btn.pn {
+    width: auto;
+    margin: 0 10px;
+    background-color: #6c757d;
+}
+
+#movie-container > div:last-child {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* Pagination container for first, numbers, and end */
+body > hr ~ a, 
+body > hr ~ div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+body > hr ~ div {
+    margin: 0 15px;
+}
+
+/* Centering the entire pagination row */
+hr ~ a:first-of-type,
+hr ~ div,
+hr ~ a:last-of-type {
+    margin-top: 10px;
+}
+
+body {
+    text-align: center;
+}
