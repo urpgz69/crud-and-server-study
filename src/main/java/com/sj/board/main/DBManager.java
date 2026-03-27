@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class DBManager {
 
-        private static final String URL = "yourUrl";
-        private static final String USER = "yourId";
-        private static final String PASSWORD = "yourPassword";
+        private static final String URL = "jdbc:oracle:thin:@10.1.82.127:1521:XE";
+        private static final String USER = "c##sj1004";
+        private static final String PASSWORD = "sj1004";
 
         public static Connection getConnection() throws SQLException {
             Connection con = null;
