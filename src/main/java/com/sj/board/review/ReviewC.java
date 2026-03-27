@@ -13,8 +13,10 @@ import java.io.IOException;
 public class ReviewC extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         AccountDAO.ACCOUNT_DAO.loginCheck(request);
-        request.setAttribute("content","/jsp/review/review.jsp");
 
+
+        ReviewDAO.REVIEW_DAO.reviewList(request);
+        request.setAttribute("content","/jsp/review/review.jsp");
         request.getRequestDispatcher("index.jsp").forward(request,response);
 
 

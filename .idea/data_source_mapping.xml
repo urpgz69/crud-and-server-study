@@ -3,5 +3,6 @@
   <component name="DataSourcePerFileMappings">
     <file url="file://$PROJECT_DIR$/src/main/webapp/jsp/db/account.sql" value="060d1d7a-318a-48a7-878d-bec0ed8bd465" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/jsp/db/movie.sql" value="060d1d7a-318a-48a7-878d-bec0ed8bd465" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/jsp/db/review.sql" value="060d1d7a-318a-48a7-878d-bec0ed8bd465" />
   </component>
 </project>
