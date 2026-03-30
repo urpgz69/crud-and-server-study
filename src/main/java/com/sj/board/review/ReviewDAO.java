@@ -118,6 +118,26 @@ public class ReviewDAO {
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        
     }
+    public void paging(int pageNum, HttpServletRequest request) {
+        List<ReviewDTO> reviews = reviewList(request);
+        int total = reviews.size();
+        int pagePerImg = 3 ;
+        int totalPage = (int) (Math.ceil((double) total / pagePerImg));
+
+        int startData = total - (pagePerImg * (pageNum - 1));
+        int endData = (pageNum == totalPage) ? -1 : startData - pagePerImg;
+
+        ArrayList<ReviewDTO> items = new ArrayList<>();
+        for (int i = startData - 1; i >= endData && i >= 0; i--) {
+            items.add(reviews.get(i));
+        }
+
+        request.setAttribute("review", items);
+        request.setAttribute("totalPage", totalPage);
+        request.setAttribute("curPage", pageNum);
+    }
+    
+    
 }

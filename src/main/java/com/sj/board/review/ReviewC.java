@@ -14,6 +14,10 @@ public class ReviewC extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         AccountDAO.ACCOUNT_DAO.loginCheck(request);
         ReviewDAO.REVIEW_DAO.reviewList(request);
+        if (request.getParameter("p") != null){
+           ReviewDAO.REVIEW_DAO.paging(Integer.parseInt(request.getParameter("p")),request);
+        }else
+        {ReviewDAO.REVIEW_DAO.paging(1,request);}
         request.setAttribute("content","/jsp/review/review.jsp");
         request.getRequestDispatcher("index.jsp").forward(request,response);
 

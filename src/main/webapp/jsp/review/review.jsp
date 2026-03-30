@@ -26,7 +26,13 @@
             </c:forEach>
         </div>
     </div>
-
+<div>
+    <a href="review?p=1"> first</a>
+    <c:forEach begin="1" end="${totalPage}" var="i">
+        <a href="review?p=${i}" class="page-btn">[${i}]</a>
+    </c:forEach>
+    <a href="review?p=${totalPage}">end</a>
+</div>
 
 <div id="reviewAddModal" style="display:none; position:fixed; top:0; left:0;
      width:100%; height:100%; background:rgba(0,0,0,0.5);
