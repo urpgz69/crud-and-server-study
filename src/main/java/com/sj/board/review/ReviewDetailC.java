@@ -9,17 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/review")
-public class ReviewC extends HttpServlet {
+@WebServlet("/review-detail")
+public class ReviewDetailC extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         AccountDAO.ACCOUNT_DAO.loginCheck(request);
-        ReviewDAO.REVIEW_DAO.reviewList(request);
-        request.setAttribute("content","/jsp/review/review.jsp");
-        request.getRequestDispatcher("index.jsp").forward(request,response);
-
-
-
-
+        ReviewDAO.REVIEW_DAO.getReview(request);
+        request.setAttribute("content", "/jsp/review/review-detail.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 

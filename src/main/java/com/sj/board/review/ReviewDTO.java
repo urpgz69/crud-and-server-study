@@ -11,8 +11,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class ReviewDTO {
     private int reNo;
-    private String reWriter;
     private String reTitle;
+    private String reText;
     private Date reDate;
 
 }

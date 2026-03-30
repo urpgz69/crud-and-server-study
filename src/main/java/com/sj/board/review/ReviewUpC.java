@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/review")
-public class ReviewC extends HttpServlet {
+@WebServlet("/review-add")
+public class ReviewUpC extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        AccountDAO.ACCOUNT_DAO.loginCheck(request);
-        ReviewDAO.REVIEW_DAO.reviewList(request);
-        request.setAttribute("content","/jsp/review/review.jsp");
-        request.getRequestDispatcher("index.jsp").forward(request,response);
+
 
 
 
 
     }
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        ReviewDAO.REVIEW_DAO.reviewAdd(request);
+        AccountDAO.ACCOUNT_DAO.loginCheck(request);
+        response.sendRedirect("review");
 
 
     }
