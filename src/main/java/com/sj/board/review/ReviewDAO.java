@@ -99,4 +99,25 @@ public class ReviewDAO {
 
 
     }
+
+    public void deleteReview(HttpServletRequest request) {
+        String sql = "delete from review_test where r_no = ?";
+        try (
+                Connection con = DBManager.getConnection();
+                PreparedStatement pstmt = con.prepareStatement(sql);
+
+
+                ){
+            pstmt.setString(1, request.getParameter("no"));
+            if (pstmt.executeUpdate()==1){
+                System.out.println("delete success");
+            }
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 }

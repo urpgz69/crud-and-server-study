@@ -39,8 +39,9 @@
 </div>
 <div>
     <button onclick="location.href='review-update?no=${review2.reNo}'">update</button>
-    <button onclick="location.href='review-delete?no=${review2.reNo}'">delete</button>
+    <button onclick="deleteReview(${review2.reNo})">delete</button>
     <button onclick="location.href='review'">back</button>
 </div>
 </body>
+<script src="${pageContext.request.contextPath}/js/Review.js"></script>
 </html>

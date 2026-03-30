@@ -9,3 +9,11 @@ function countText(){
         cntSpan.innerText = textArea.value.length;
     }
 }
+function deleteReview(no){
+    let ok = confirm("Are you sure you want to delete this review?");
+    if(ok){
+        location.href = "review-delete?no="+no;
+
+    }
+
+}
