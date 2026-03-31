@@ -7,14 +7,13 @@ import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReviewDAO {
-    public static final ReviewDAO REVIEW_DAO = new ReviewDAO();
+public class ReviewDAO2 {
+    public static final ReviewDAO2 REVIEW_DAO = new ReviewDAO2();
     public Connection con = null;
-    private ReviewDAO() {
+    private ReviewDAO2() {
         try {
             con = DBManager.getConnection();
         } catch (Exception e) {
@@ -22,15 +21,12 @@ public class ReviewDAO {
         }
     }
 
-
-
-
-
     public List<ReviewDTO> reviewList(HttpServletRequest request) {
         String sql = "select * from review_test";
         List<ReviewDTO> reviews = new ArrayList<>();
 
         try (
+                Connection con = DBManager.getConnection();
                 PreparedStatement pstmt = con.prepareStatement(sql);
                 ResultSet rs = pstmt.executeQuery()
         ) {
@@ -51,6 +47,7 @@ public class ReviewDAO {
         String title = request.getParameter("title");
         String text = request.getParameter("story");
         try (
+                Connection con = DBManager.getConnection();
                 PreparedStatement pstmt = con.prepareStatement(sql);
         ) {
             pstmt.setString(1, title);
@@ -66,6 +63,7 @@ public class ReviewDAO {
     public void getReview(HttpServletRequest request) {
         String sql = "select * from review_test where r_no = ?";
         try (
+                Connection con = DBManager.getConnection();
                 PreparedStatement pstmt = con.prepareStatement(sql);
         ) {
             pstmt.setInt(1, Integer.parseInt(request.getParameter("no")));
@@ -89,33 +87,44 @@ public class ReviewDAO {
         String sql = "update review_test set r_title = ?, r_txt = ? where r_no = ?";
 
         try (
+                Connection con = DBManager.getConnection();
                 PreparedStatement pstmt = con.prepareStatement(sql);
         ){
           pstmt.setString(1,request.getParameter("reTitle"));
           pstmt.setString(2,request.getParameter("reText"));
-          pstmt.setInt(3, Integer.parseInt(request.getParameter("reNo")));
+          pstmt.setString(3,request.getParameter("reNo"));
           if(pstmt.executeUpdate() == 1){
               System.out.println("update success");
           }
         }catch (Exception e){
             e.printStackTrace();
         }
+
+
+
+
     }
 
     public void deleteReview(HttpServletRequest request) {
         String sql = "delete from review_test where r_no = ?";
         try (
+                Connection con = DBManager.getConnection();
                 PreparedStatement pstmt = con.prepareStatement(sql);
+
+
                 ){
-            pstmt.setInt(1, Integer.parseInt(request.getParameter("no")));
+            pstmt.setString(1, request.getParameter("no"));
             if (pstmt.executeUpdate()==1){
                 System.out.println("delete success");
             }
+
+
+
         }catch (Exception e){
             e.printStackTrace();
         }
+        
     }
-    
     public void paging(int pageNum, HttpServletRequest request) {
         List<ReviewDTO> reviews = reviewList(request);
         int total = reviews.size();
@@ -134,4 +143,6 @@ public class ReviewDAO {
         request.setAttribute("totalPage", totalPage);
         request.setAttribute("curPage", pageNum);
     }
+    
+    
 }
