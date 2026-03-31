@@ -24,6 +24,7 @@
         <div><a href="menu1" id="menu1"></a></div>
         <div><a href="movie" id="movie"></a></div>
         <div><a href="review" id="review"></a></div>
+        <div><a href="jquery" id="jQuery"></a></div>
     </div>
 
     <div class="content">

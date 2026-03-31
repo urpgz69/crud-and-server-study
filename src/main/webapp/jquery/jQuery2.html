@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script>
+    $(function () {
+        $("#b1").click(function () {
+            alert("Hello World !");
+            $("h1").css("color","red")
+
+        })
+        $("#b2").click(function () {
+          $("h1").css("color","purple").css("fontSize","50px")
+        })
+        $("#b3").click(function () {
+            $("h1").css("color","green"); //setter
+           let color = $("h1").css("color")
+            alert(color)
+        })
+      $("#b4").click(function () {
+          let h1Color = $(h1).css("color");
+          $("#b4").css("backgroundColor",h1Color);
+
+      })
+        let time =5;
+ let setTime = setInterval(function () {
+     let x  = $("span");
+     x.text(time);
+     $(x).text(time);
+     time -= 1;
+     if (time < 0){
+         clearInterval(setTime);
+     }
+  },1000); //==1초
+setInterval(function (){
+    let x = Math.random()*500 ;
+    let y = Math.random()*500 ;
+    $("img").css("top",x).css("left",y);
+
+},30000)
+        $(function (){
+            $(".test").click(function (){
+
+                console.log(test());
+                if (test().val()==='night mode'){
+                $('body').css("background-color","black").css("color","white");
+                $(".test").val("day mode").text("day mode");
+               }
+                else{
+                $('body').css("background-color","white").css("color","black");
+                $(".test").val("night mode").text("night mode");
+                }
+            })
+        });
+
+
+    })
+</script>
+</head>
+<body>
+
+<h1>ㅋㅅㅋ</h1>
+<button id="b1">btn1</button>
+<button id="b2">btn2</button>
+<button id="b3">btn3</button>
+<button id="b4">btn4</button>
+<hr>
+초 : <span></span>
+<hr>
+
+<!--<img style="position:fixed; transition: all 100ms ease-in-out" src="data:image/png;base64,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" alt="">-->
+<hr>
+<input type="button" name="test" value="night mode">
+<button >night mode</button>
+</body>
+</html>

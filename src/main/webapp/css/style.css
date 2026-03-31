@@ -50,6 +50,7 @@ div.title a {
 .menu div:nth-child(1) a::after { content: "Menu 1"; }
 .menu div:nth-child(2) a::after { content: "Movie"; }
 .menu div:nth-child(3) a::after { content: "Review"; }
+.menu div:nth-child(4) a::after { content: "jQuery"; }
 
 .content {
     padding: 20px;
@@ -144,4 +145,60 @@ header h1 {
     padding: 0 10px 10px;
     color: #777;
     font-size: 0.9rem;
+}
+
+/* Review & Movie Detail/Update Styles */
+.review-detail-wrap, .movie-update {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+
+.review-detail-wrap > div, .movie-update > div {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.col-1 {
+    flex: 0 0 100px;
+    font-weight: bold;
+}
+
+.col-2 {
+    flex: 1;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.cntSpan {
+    font-weight: bold;
+    color: #333;
 }

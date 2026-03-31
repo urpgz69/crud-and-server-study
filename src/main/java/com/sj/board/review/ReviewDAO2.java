@@ -1,6 +1,7 @@
 package com.sj.board.review;
 
 import com.sj.board.main.DBManager;
+import com.sj.board.main.DBManager2;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -15,7 +16,7 @@ public class ReviewDAO2 {
     public Connection con = null;
     private ReviewDAO2() {
         try {
-            con = DBManager.getConnection();
+            con = DBManager2.connect();
         } catch (Exception e) {
             e.printStackTrace();
         }
