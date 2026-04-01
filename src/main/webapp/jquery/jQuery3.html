@@ -8,19 +8,47 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
 $(function () {
+    let m1Visible = true;
+$("#b1").click(function () {
+
+    if (m1Visible) {
+    $('#menu1').css("left", "0px");
+
+    }
+
+    else{
+    $('#menu1').css('left','-80px')
+
+    }
+    m1Visible = !m1Visible;
+})
 
 
 });
 
     </script>
+    <style>
+        #menu1{
+            position: fixed;
+            left: -80px;
+            transition: all 0.3s ease-out;
+        }
+    </style>
     <title>Document</title>
 </head>
 <body>
-
-<h1 >sad</h1>
-<button id="btn1">btn1</button>
-<button class="btn2">btn2</button>
-<button class="btn2">btn3</button>
+<button id="b1">menu1</button>
+<div id="menu1" style="border: 1px solid; width: 80px">
+    <div>
+        <a href="https://www.naver.com">naver</a>
+    </div>
+    <div>
+        <a href="https://www.daum.net">daum</a>
+    </div>
+    <div>
+        <a href="https://www.google.com">google</a>
+    </div>
+</div>
 </body>
 
 
