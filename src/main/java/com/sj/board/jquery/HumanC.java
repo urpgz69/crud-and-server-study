@@ -14,7 +14,8 @@ public class HumanC extends HttpServlet {
 //HumanDAO.test1(request);
 //        HumanDAO.test2(request,response);
 //        HumanDAO.test3(request,response);
-        HumanDAO.test4(request,response);
+//        HumanDAO.test4(request,response);
+        HumanDAO.test5(request,response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

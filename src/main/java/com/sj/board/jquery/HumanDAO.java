@@ -2,11 +2,16 @@ package com.sj.board.jquery;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.sj.board.main.DBManager;
+import com.sj.board.main.DBManager2;
 import org.json.simple.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class HumanDAO {
@@ -59,19 +64,47 @@ public class HumanDAO {
         Human h3 = new Human(2, "mz2" ,20);
         Human h4 = new Human(3, "mz3" ,30);
         System.out.println("-----------------");
-        System.out.println(h2);
-        System.out.println(h3);
-        System.out.println(h4);
-        System.out.println(h2.toJson());
+
         ArrayList<String> humans = new ArrayList<String>();
         humans.add(h2.toJson());
         humans.add(h3.toJson());
         humans.add(h4.toJson());
         System.out.println(humans);
         try {
-            response.getWriter().println(humans);
+            JsonObject obj = new JsonObject();
+            JsonParser parser = new JsonParser();
+            obj.add("people",parser.parse(humans.toString()));
+            response.getWriter().println(obj);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+
+
+    }
+
+    public static void test5(HttpServletRequest request, HttpServletResponse response) {
+        response.setContentType("application/json;charset=UTF-8");
+            Human human ;
+            ArrayList<String> humans = new ArrayList<>();
+        try (Connection con = DBManager.getConnection();
+             PreparedStatement pstmt = con.prepareStatement("select * from human_test2");
+             ResultSet rs = pstmt.executeQuery();
+        ) {
+
+            while (rs.next()){
+                human = new Human(rs.getInt("h_no"),rs.getString("h_name"),rs.getInt("h_age"));
+                humans.add(human.toJson());
+            }
+            System.out.println(humans);
+            JsonObject obj = new JsonObject();
+            JsonParser parser = new JsonParser();
+            obj.add("people",parser.parse(humans.toString()));
+            response.getWriter().println(obj);
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
 
