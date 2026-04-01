@@ -11,11 +11,12 @@
             $("button").click(function (){
 
                 $.ajax({
-type : "get",
+                    type : "get",
                     url:"get-data",
                     data:{name:'asd',age:10},
                     success: function (resData){
-    console.log(11);
+                    console.log(resData);
+                    console.log(JSON.stringify(resData));
                     }
                     })
 
