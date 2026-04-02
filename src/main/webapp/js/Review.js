@@ -31,6 +31,7 @@ function searchReview(){
         data : {reviewTitle } // ===param
     }).done(function (resData){
         console.log(resData);
+        $("#result").empty();
         showResult(resData);
     }).fail((xhr,status,error )=>{
         console.log(xhr);
@@ -55,6 +56,7 @@ function showResult(resData){
                 </div>
          `;
         $("#result").append(content);
+
 
     })
 }
