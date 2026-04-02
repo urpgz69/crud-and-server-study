@@ -84,15 +84,17 @@ public class HumanDAO {
 
     public static void test5(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("application/json;charset=UTF-8");
-            Human human ;
+            Human human = new Human() ;
             ArrayList<String> humans = new ArrayList<>();
         try (Connection con = DBManager.getConnection();
              PreparedStatement pstmt = con.prepareStatement("select * from human_test2");
              ResultSet rs = pstmt.executeQuery();
         ) {
 
-            while (rs.next()){
-                human = new Human(rs.getInt("h_no"),rs.getString("h_name"),rs.getInt("h_age"));
+            while (rs.next()) {
+                human.setAge(rs.getInt("h_age"));
+                human.setName(rs.getString("h_name"));
+                human.setNo(rs.getInt("h_no"));
                 humans.add(human.toJson());
             }
             System.out.println(humans);

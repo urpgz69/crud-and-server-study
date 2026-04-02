@@ -5,6 +5,8 @@
 <head>
     <title>sj-board</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
 
 </head>
 <body>

@@ -6,6 +6,7 @@
     <title>Home page</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/review.css">
     <script src="${pageContext.request.contextPath}/js/Review.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body>
 <header><h1>      review page        </h1></header>
@@ -33,6 +34,13 @@
     </c:forEach>
     <a href="review?p=${totalPage}">end</a>
 </div>
+<div>
+    <input id="search-input">
+    <button id="search-btn">search</button>
+    <hr>
+    <span id="result"></span>
+</div>
+
 
 <div id="reviewAddModal" style="display:none; position:fixed; top:0; left:0;
      width:100%; height:100%; background:rgba(0,0,0,0.5);

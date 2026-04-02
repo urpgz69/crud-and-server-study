@@ -1,6 +1,5 @@
 package com.sj.board.review;
 
-import com.sj.board.main.DBManager;
 import com.sj.board.main.DBManager2;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,19 +7,12 @@ import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewDAO {
     public static final ReviewDAO REVIEW_DAO = new ReviewDAO();
-    public Connection con = null;
     private ReviewDAO() {
-        try {
-            con = DBManager2.connect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 
@@ -32,6 +24,7 @@ public class ReviewDAO {
         List<ReviewDTO> reviews = new ArrayList<>();
 
         try (
+                Connection con = DBManager2.connect();
                 PreparedStatement pstmt = con.prepareStatement(sql);
                 ResultSet rs = pstmt.executeQuery()
         ) {
@@ -52,6 +45,7 @@ public class ReviewDAO {
         String title = request.getParameter("title");
         String text = request.getParameter("story");
         try (
+                Connection con = DBManager2.connect();
                 PreparedStatement pstmt = con.prepareStatement(sql);
         ) {
             pstmt.setString(1, title);
@@ -67,6 +61,7 @@ public class ReviewDAO {
     public void getReview(HttpServletRequest request) {
         String sql = "select * from review_test where r_no = ?";
         try (
+                Connection con = DBManager2.connect();
                 PreparedStatement pstmt = con.prepareStatement(sql);
         ) {
             pstmt.setInt(1, Integer.parseInt(request.getParameter("no")));
@@ -90,6 +85,7 @@ public class ReviewDAO {
         String sql = "update review_test set r_title = ?, r_txt = ? where r_no = ?";
 
         try (
+                Connection con = DBManager2.connect();
                 PreparedStatement pstmt = con.prepareStatement(sql);
         ){
           pstmt.setString(1,request.getParameter("reTitle"));
@@ -106,6 +102,7 @@ public class ReviewDAO {
     public void deleteReview(HttpServletRequest request) {
         String sql = "delete from review_test where r_no = ?";
         try (
+                Connection con = DBManager2.connect();
                 PreparedStatement pstmt = con.prepareStatement(sql);
                 ){
             pstmt.setInt(1, Integer.parseInt(request.getParameter("no")));
@@ -120,7 +117,7 @@ public class ReviewDAO {
     public void paging(int pageNum, HttpServletRequest request) {
         List<ReviewDTO> reviews = reviewList(request);
         int total = reviews.size();
-        int pagePerImg = 3 ;
+        int pagePerImg = 5 ;
         int totalPage = (int) (Math.ceil((double) total / pagePerImg));
 
         int startData = total - (pagePerImg * (pageNum - 1));
@@ -134,5 +131,37 @@ public class ReviewDAO {
         request.setAttribute("review", items);
         request.setAttribute("totalPage", totalPage);
         request.setAttribute("curPage", pageNum);
+    }
+
+    public ArrayList<String> reviewSearch(HttpServletRequest request) {
+        String sql = "select * from review_test where r_title like '%'||?||'%'";
+        ArrayList<String> reviews = new ArrayList<>();
+        String reviewTitle = request.getParameter("reviewTitle");
+        ReviewDTO review = new ReviewDTO();
+        try (
+                Connection con = DBManager2.connect();
+                PreparedStatement pstmt = con.prepareStatement(sql);
+        ) {
+            pstmt.setString(1, reviewTitle);
+            try(
+                    ResultSet rs = pstmt.executeQuery();
+                    ) {
+                    while (rs.next()){
+                        review.setReNo(rs.getInt("r_no"));
+                        review.setReTitle(rs.getString("r_title"));
+                        review.setReText(rs.getString("r_txt"));
+                        review.setReDate(rs.getDate("r_date"));
+                        reviews.add(review.toJson());
+                    }
+                    return reviews;
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }catch (Exception e ){
+            e.printStackTrace();
+        }
+     return null;
     }
 }

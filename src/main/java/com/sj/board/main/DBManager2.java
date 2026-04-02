@@ -9,7 +9,7 @@ public class DBManager2 {
     private static final BasicDataSource dataSource;
     static {
         dataSource = new BasicDataSource();
-        dataSource.setUrl("jdbc:oracle:thin:@192.168.0.39:1521:XE");
+        dataSource.setUrl("jdbc:oracle:thin:@10.1.82.127:1521:XE");
         dataSource.setUsername("c##sj1004");
         dataSource.setPassword("sj1004");
         dataSource.setMinIdle(10);        // 최소 유휴 커넥션

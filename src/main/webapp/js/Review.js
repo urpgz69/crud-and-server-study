@@ -17,3 +17,44 @@ function deleteReview(no){
     }
 
 }
+$(function (){
+//바디가 로드된 뒤 시행
+    searchReview();
+
+})
+function searchReview(){
+    $("#search-btn").click( () => {
+    const reviewTitle = $("#search-input").val();
+    console.log(reviewTitle);
+    $.ajax({
+       url:'review-search',
+        data : {reviewTitle } // ===param
+    }).done(function (resData){
+        console.log(resData);
+        showResult(resData);
+    }).fail((xhr,status,error )=>{
+        console.log(xhr);
+        console.log(status);
+        console.log(error);
+
+    } )
+
+    })
+
+}
+
+function showResult(resData){
+    $.each(resData, (i,r)=>{
+        console.log(i);
+        console.log(r);
+        let content =  `<div class="review-row">
+                    <div>
+                        <span onclick="location.href='review-detail?no=${r.reNo}'">${r.reTitle }</span>
+                    </div>
+                    <div>${r.reDate }</div>
+                </div>
+         `;
+        $("#result").append(content);
+
+    })
+}
